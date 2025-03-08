@@ -1,27 +1,25 @@
 import { useState } from "react"
 
-function Buscador() {
-    const [Busqueda, setBusqueda] = useState("");
+function Buscador({onBuscar}) {
+    const [busqueda, setBusqueda] = useState("");
 
-    const handChange = (e) =>{
-        const nuevoValor = e.target.value;
-        setBusqueda(nuevoValor);
-        onBuscar(nuevoValor);
-    }
-return (
-    <>
-    <h1>Buscado de Países</h1>
-    <div>
-        <h4>Buscar Pais:</h4>
-        <input 
+  const manejarCambio = (e) => {
+    setBusqueda(e.target.value);
+    onBuscar(e.target.value);
+  };
+
+  return (
+    <div className="w3-margin-top">
+      <h4>Buscar País:</h4>
+      <input
         type="text"
-        placeholder="Escribe el nombre de un país"
-        value={Busqueda}
-        onChange={handChange}
-        />
+        className="w3-input w3-border w3-round"
+        placeholder="Escribe el nombre de un país..."
+        value={busqueda}
+        onChange={manejarCambio}
+      />
     </div>
-    </>
-)
+  );
 }
 
 export default Buscador
